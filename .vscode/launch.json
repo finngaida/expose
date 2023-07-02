@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "demo.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--image-folder", "samples",
+                "--exp-cfg", "data/conf.yaml",
+                "--show", "True",
+                "--output-folder", "out",
+                "--save-params", "False",
+                "--save-vis", "True",
+                "--save-mesh", "True"
+            ],
+            "env": {
+                "DYLD_LIBRARY_PATH": "/Users/fga/docs/uni/angle/out/Debug:$DYLD_LIBRARY_PATH",
+                "__PYOPENGL_PLATFORM": "egl",
+                "_PYOPENGL_PLATFORM": "osmesa"
+            }
+        }
+    ]
+}

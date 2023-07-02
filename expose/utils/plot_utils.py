@@ -23,6 +23,7 @@ import torch
 import matplotlib.cm as mpl_cm
 import matplotlib.colors as mpl_colors
 import trimesh
+import pyglet
 import pyrender
 
 from loguru import logger

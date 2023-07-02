@@ -10,7 +10,7 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 
 from torchvision.models.resnet import (ResNet, Bottleneck, BasicBlock,
-                                       model_urls)
+                                       ResNet18_Weights, ResNet50_Weights)
 
 
 class RegressionResNet(ResNet):
@@ -111,7 +111,7 @@ def resnet18(pretrained=False, **kwargs):
     model = RegressionResNet(BasicBlock, [2, 2, 2, 2], **kwargs)
     if pretrained:
         logger.info('Loading pretrained ResNet-18')
-        model.load_state_dict(model_zoo.load_url(model_urls['resnet18']),
+        model.load_state_dict(model_zoo.load_url(ResNet18_Weights.IMAGENET1K_V1.url),
                               strict=False)
     return model
 

@@ -20,7 +20,6 @@ import os
 import os.path as osp
 from typing import List, Optional
 import functools
-os.environ['PYOPENGL_PLATFORM'] = 'egl'
 
 import resource
 import numpy as np
@@ -82,10 +81,10 @@ def preprocess_images(
 ) -> dutils.DataLoader:
 
     if device is None:
-        device = torch.device('cuda')
-        if not torch.cuda.is_available():
-            logger.error('CUDA is not available!')
-            sys.exit(3)
+        device = torch.device('cpu')
+        # if not torch.cuda.is_available():
+        #     logger.error('CUDA is not available!')
+        #     sys.exit(3)
 
     rcnn_model = keypointrcnn_resnet50_fpn(pretrained=True)
     rcnn_model.eval()
@@ -224,10 +223,10 @@ def main(
     degrees: Optional[List[float]] = [],
 ) -> None:
 
-    device = torch.device('cuda')
-    if not torch.cuda.is_available():
-        logger.error('CUDA is not available!')
-        sys.exit(3)
+    device = torch.device('cpu')
+    # if not torch.cuda.is_available():
+    #     logger.error('CUDA is not available!')
+    #     sys.exit(3)
 
     logger.remove()
     logger.add(lambda x: tqdm.write(x, end=''),
@@ -274,7 +273,10 @@ def main(
     cnt = 0
     for bidx, batch in enumerate(tqdm(expose_dloader, dynamic_ncols=True)):
 
-        full_imgs_list, body_imgs, body_targets = batch
+        # full_imgs_list, body_imgs, body_targets = batch
+        full_imgs_list = batch.img_list
+        body_imgs = batch.images
+        body_targets = batch.targets
         if full_imgs_list is None:
             continue
 
@@ -283,11 +285,11 @@ def main(
         body_targets = [target.to(device) for target in body_targets]
         full_imgs = full_imgs.to(device=device)
 
-        torch.cuda.synchronize()
+        # torch.cuda.synchronize()
         start = time.perf_counter()
         model_output = model(body_imgs, body_targets, full_imgs=full_imgs,
                              device=device)
-        torch.cuda.synchronize()
+        # torch.cuda.synchronize()
         elapsed = time.perf_counter() - start
         cnt += 1
         total_time += elapsed
@@ -458,7 +460,7 @@ def main(
                     ax.set_axis_off()
 
                 axes[0, 0].imshow(hd_imgs[idx])
-                axes[0, 1].imshow(out_img['rgb'][idx])
+                # axes[0, 1].imshow(out_img['rgb'][idx])
                 axes[0, 2].imshow(out_img['hd_orig_overlay'][idx])
                 axes[0, 3].imshow(out_img['hd_overlay'][idx])
                 start = 4
