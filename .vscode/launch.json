@@ -20,7 +20,6 @@
                 "--save-mesh", "True"
             ],
             "env": {
-                "DYLD_LIBRARY_PATH": "/Users/fga/docs/uni/angle/out/Debug:$DYLD_LIBRARY_PATH",
                 "__PYOPENGL_PLATFORM": "egl",
                 "_PYOPENGL_PLATFORM": "osmesa"
             }

@@ -110,6 +110,7 @@ def preprocess_images(
             tqdm(rcnn_dloader, desc='Processing with R-CNN')):
         batch['images'] = [x.to(device=device) for x in batch['images']]
 
+        # todo: run yolo or alphapose
         output = rcnn_model(batch['images'])
         for ii, x in enumerate(output):
             img = np.transpose(
