@@ -34,6 +34,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from expose.models.attention.SUPRLayer import SUPRLayer
+
 from .hand_predictor import HandPredictor
 from .head_predictor import HeadPredictor
 
@@ -249,6 +251,10 @@ class SMPLXHead(nn.Module):
             model_type=model_type,
             dtype=dtype,
             **body_model_cfg)
+        # self.body_model = SUPRLayer(
+        #     model_path,
+        #     dtype=dtype,
+        #     **body_model_cfg)
         logger.info(f'Body model: {self.body_model}')
 
         # The number of shape coefficients
@@ -1009,6 +1015,7 @@ class SMPLXHead(nn.Module):
 
         # Compute the body surface using the current estimation of the pose and
         # the shape
+        ## replace with SUPR?
         body_model_output = self.body_model(
             get_skin=True, return_shaped=True, **merged_params)
 
