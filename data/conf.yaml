@@ -4,22 +4,22 @@ body_model:
   gender: neutral
   global_orient:
     param_type: cont_rot_repr
-  j14_regressor_path: data/SMPLX_to_J14.pkl
+  j14_regressor_path: expose/data/SMPLX_to_J14.pkl
   jaw_pose:
     param_type: cont_rot_repr
   left_hand_pose:
     flat_hand_mean: false
     num_pca_comps: 12
     param_type: cont_rot_repr
-  mean_pose_path: data/all_means.pkl
-  model_folder: data/models/
+  mean_pose_path: expose/data/all_means.pkl
+  model_folder: expose/data/models
   num_betas: 10
   num_expression_coeffs: 10
   right_hand_pose:
     flat_hand_mean: false
     num_pca_comps: 12
     param_type: cont_rot_repr
-  shape_mean_path: data/shape_mean.npy
+  shape_mean_path: expose/data/shape_mean.npy
   type: smplx
   use_compressed: true
   use_face_contour: true
@@ -34,10 +34,10 @@ datasets:
     curated_fits:
       binarization: true
       body_thresh: 0.1
-      data_path: data/curated_fits_with_transl/
+      data_path: expose/data/curated_fits_with_transl/
       face_thresh: 0.4
       hand_thresh: 0.2
-      img_folder: data/curated_fits_with_transl/images
+      img_folder: expose/data/curated_fits_with_transl/images
       joints_to_ign: []
       metrics:
       - v2v
@@ -335,12 +335,12 @@ hand_model:
     num_pca_comps: 12
     param_type: cont_rot_repr
   j14_regressor_path: ''
-  mean_pose_path: data/all_means.pkl
-  model_folder: data/models
+  mean_pose_path: expose/data/all_means.pkl
+  model_folder: expose/data/models
   num_betas: 10
   num_expression_coeffs: 10
   return_hand_vertices_only: true
-  shape_mean_path: data/shape_mean.npy
+  shape_mean_path: expose/data/shape_mean.npy
   type: mano
   use_compressed: true
   use_face_keypoints: true
@@ -355,12 +355,12 @@ head_model:
   j14_regressor_path: ''
   jaw_pose:
     param_type: cont_rot_repr
-  mean_pose_path: data/all_means.pkl
-  model_folder: data/models
+  mean_pose_path: expose/data/all_means.pkl
+  model_folder: expose/data/models
   num_betas: 100
   num_expression_coeffs: 50
   return_head_vertices_only: true
-  shape_mean_path: data/shape_mean.npy
+  shape_mean_path: expose/data/shape_mean.npy
   type: flame
   use_compressed: true
   use_face_contour: true
@@ -371,7 +371,7 @@ img_summary_steps: 1000
 imgs_per_row: 3
 interactive: true
 is_training: true
-j14_regressor_path: data/SMPLX_to_J14.pkl
+j14_regressor_path: expose/data/SMPLX_to_J14.pkl
 local_rank: 0
 log_file: /tmp/logs/
 logger_level: info
@@ -415,8 +415,8 @@ losses:
     weight: 1.0
   edge:
     enable: 0
-    est_edge_path: data/smplx/smplx_edges.npy
-    gt_edge_path: data/smplx/smplx_edges.npy
+    est_edge_path: expose/data/smplx/smplx_edges.npy
+    gt_edge_path: expose/data/smplx/smplx_edges.npy
     norm_type: l2
     rho: 100.0
     size_average: true
@@ -1182,7 +1182,7 @@ optim:
   type: adam
   weight_decay: 0.0001
   weight_decay_bias: 0.0
-output_folder: data
+output_folder: expose/data
 plot_conf_thresh: 0.3
 pretrained: ''
 results_folder: results
