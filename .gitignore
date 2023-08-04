@@ -2,3 +2,9 @@
 out
 **/.DS_Store
 samples
+**.ckpt
+**.npz
+data/models/smplx/SMPLX_FEMALE.pkl
+**.pkl
+**.npy
+**.zip
